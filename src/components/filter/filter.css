@@ -1,0 +1,51 @@
+.container {
+  width: 80%;
+  margin: 50px auto;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  background: #f3f4f6;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 5px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 0.3rem;
+  border-radius: 5px;
+  background: #fff;
+}
+
+.input input {
+  width: 90%;
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+.search {
+  font-size: 1.2rem;
+  color: #000;
+}
+
+.select-category {
+  width: 25%;
+  margin-top: 10px;
+  padding: 0.6rem;
+  border: none;
+}
+
+@media screen and (max-width: 720px) {
+  .container {
+    width: 90%;
+  }
+
+  .selects {
+    flex-direction: column !important;
+  }
+
+  .select-category {
+    width: 100%;
+  }
+}

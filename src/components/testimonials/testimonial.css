@@ -1,0 +1,35 @@
+.testimonials {
+  padding-top: 2rem;
+}
+
+.testimonial-heading {
+  text-align: center;
+}
+.testimonial {
+  padding: 1rem;
+  font-size: 0.8rem;
+  align-items: center;
+}
+
+.testimonial img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+hr {
+  width: 20%;
+  height: 3px;
+  background: #d81b60;
+}
+
+@media screen and (max-width: 690px) {
+  .testimonials {
+    flex-wrap: wrap;
+  }
+
+  .testimonial {
+    width: 80%;
+    margin: 0 auto;
+  }
+}

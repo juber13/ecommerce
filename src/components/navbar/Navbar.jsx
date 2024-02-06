@@ -29,9 +29,9 @@ const Navbar = () => {
                 <nav className='nav-menu-mobile'>
                     <ul className='flex gap flex-col'>
                         <li><a href="#">All Products</a></li>
-                        <li><a href="#">Order</a></li>
-                        <li><a href="#">Admin</a></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><Link to="/order">Order</Link></li>
+                        <li><Link to="#">Admin</Link></li>
+                        <li><Link to="/login">Login</Link></li>
                         <hr />
                         <li><a href="#"><img src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-png" /></a></li>
                     </ul>
@@ -50,7 +50,7 @@ const Navbar = () => {
                     </div>
                     <div className='center-items flex gap hide item-center'>
                         <IoSunnyOutline className='icon' />
-                        <IoCartOutline className='icon' />
+                        <Link to="/cart"><IoCartOutline className='icon' /></Link>
                         <span>0</span>
                     </div>
                 </div>

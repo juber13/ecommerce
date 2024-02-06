@@ -1,0 +1,22 @@
+.cart-heading {
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.modal img {
+  width: 100px;
+}
+.modal,
+.total-content {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+
+.buy-now-btn {
+  padding: 0.5rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #2756c1;
+  color: #fff;
+}

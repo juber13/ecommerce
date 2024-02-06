@@ -74,7 +74,7 @@ const Navbar = () => {
                             </li>
                             <li><a href="#"><img src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-png" /></a></li>
                             <li><a href="#"><IoSunnyOutline className='icon' /></a></li>
-                            <li><a href="#"><IoCartOutline className='icon' /></a></li>
+                            <li><Link to="/cart"><IoCartOutline className='icon' /></Link></li>
                         </ul>
                     </nav>
                 </div>

@@ -44,7 +44,7 @@ const ProductInfo = () => {
                     </div>
 
                     <div className="footer">
-                        <div className="price flex flex-col start gap">
+                        <div className="price flex flex-col itemsstart gap">
                             <h4>Price 245$.00</h4>
                             <button className='btn add-to-cart-btn'>Add To Cart</button>
                         </div>

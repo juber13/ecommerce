@@ -9,8 +9,10 @@
 
 .footer-container {
   width: 100% !important;
-  margin-bottom: 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
+  position: absolute;
+  /* bottom: 0; */
 }
 
 .top-footer {
@@ -19,13 +21,17 @@
 
 .bottom-footer {
   padding: 1rem;
-  height: 80px;
+  height: auto;
   background: #fff;
 }
 
 .footer-container .icon {
   font-size: 1.4rem;
   fill: #838383;
+}
+
+.left-footer p {
+  margin: 0;
 }
 
 @media screen and (max-width: 550px) {

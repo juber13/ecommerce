@@ -9,6 +9,8 @@ import NoPage from './pages/nopage/NoPage'
 import MyState from './context/data/MyState'
 import SignUp from './pages/ragistrations/SignUp'
 import Login from './pages/ragistrations/Login'
+import ProductCard from './components/productCard/ProductCard'
+import ProductInfo from './pages/productInfo/ProductInfo'
 const App = () => {
   return (
     <MyState>
@@ -17,6 +19,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/order' element={<Order />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/productInfo/:id' element={<ProductInfo />} />
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />

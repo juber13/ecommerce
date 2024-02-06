@@ -78,3 +78,8 @@ h6 {
 .content {
   width: 100%;
 }
+
+.start {
+  /* justify-content: start; */
+  align-items: start;
+}

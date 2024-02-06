@@ -1,0 +1,27 @@
+.left-content img {
+  /* width: 400px; */
+  /* height: 400px; */
+  max-width: 100%;
+  height: auto;
+  /* display: block; */
+  margin: auto;
+  border-radius: 5px;
+}
+
+.right-content .icon {
+  font-size: 15px;
+}
+
+/* .add-to-cart {
+  border: none;
+  padding: 0.5rem;
+  background: #d81b60;
+  color: #fff;
+  border-radius: 5px;
+} */
+
+@media screen and (max-width: 1050px) {
+  .product-info {
+    flex-direction: column;
+  }
+}

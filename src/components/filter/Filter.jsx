@@ -11,7 +11,7 @@ const Filter = () => {
                 </div>
 
                 <div className="options">
-                    <div className="heading flex1 space-between">
+                    <div className="heading-filter flex1 space-between">
                         <h5>Filter</h5>
                         <h5>Reset Filter</h5>
                     </div>

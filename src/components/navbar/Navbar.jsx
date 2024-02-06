@@ -46,7 +46,7 @@ const Navbar = () => {
                 <div className="left-menu flex item-center gap">
                     <div className='flex item-center gap'>
                         <CiMenuBurger className='icon active menu' onClick={() => setShowMenu(!showMenu)} />
-                        <h3>E-Bahrat</h3>
+                        <h3><Link to="/">E-Bharat</Link></h3>
                     </div>
                     <div className='center-items flex gap hide item-center'>
                         <IoSunnyOutline className='icon' />

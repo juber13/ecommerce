@@ -1,0 +1,62 @@
+body {
+  background: #ddd;
+}
+
+.heading {
+  color: #d81b60;
+}
+
+form {
+  position: relative;
+}
+
+.form-container {
+  /* width: 40% !important; */
+  margin: 100px auto;
+  max-width: 400px;
+}
+
+.form-control {
+  width: 100%;
+}
+
+.form-control input {
+  padding: 0.6rem;
+  border: none;
+  outline: none;
+}
+
+.form-control label {
+  font-size: 15px;
+}
+
+.form-control input[type="submit"] {
+  border: 1px solid #ddd;
+  cursor: pointer;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.form-control input[name="confirm-password"] {
+  position: relative;
+  /* top: 5%; */
+}
+
+.eye-icon,
+.confirm-eye-icon {
+  position: absolute;
+  right: 1%;
+  /* bottom: 1%; */
+}
+
+.eye-icon .icon,
+.confirm-eye-icon .icon {
+  font-size: 16px !important;
+  cursor: pointer;
+}
+
+.link a {
+  color: blue !important;
+  text-decoration: underline;
+}

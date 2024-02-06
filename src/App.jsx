@@ -7,6 +7,8 @@ import Cart from './pages/cart/Cart'
 import DashBoard from './pages/admin/dashBoard/DashBoard'
 import NoPage from './pages/nopage/NoPage'
 import MyState from './context/data/MyState'
+import SignUp from './pages/ragistrations/SignUp'
+import Login from './pages/ragistrations/Login'
 const App = () => {
   return (
     <MyState>
@@ -16,6 +18,8 @@ const App = () => {
           <Route path='/order' element={<Order />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/dashboard' element={<DashBoard />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
           <Route path='/*' element={<NoPage />} />
         </Routes>
       </BrowserRouter>

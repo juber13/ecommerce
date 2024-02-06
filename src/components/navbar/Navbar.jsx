@@ -61,9 +61,9 @@ const Navbar = () => {
                     <nav>
                         <ul className='flex gap item-center right-menu-items'>
                             <li><a href="#">All Products</a></li>
-                            <li><a href="#">Order</a></li>
+                            <li><Link to="/order">Order</Link></li>
                             <li><a href="#">Admin</a></li>
-                            <li><a href="#">Logout</a></li>
+                            <li><Link to="/login">Login</Link></li>
                             <li className='flex item-center gap'>
                                 <img
                                     src="https://ecommerce-sk.vercel.app/img/indiaflag.png"

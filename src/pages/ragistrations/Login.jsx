@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IoEyeOffOutline } from "react-icons/io5";
 import { IoEyeOutline } from "react-icons/io5";
 import { Link } from 'react-router-dom';
+import Layout from '../../components/layout/Layout';
 
 const Login = () => {
     const [isPasswordShow, setIsPasswordShow] = useState(false);
@@ -28,6 +29,7 @@ const Login = () => {
         })
     }
     return (
+        <Layout>
         <div className='container form-container flex flex-col gap'>
             <div className='heading'>
                 <h3>Login</h3>
@@ -54,6 +56,7 @@ const Login = () => {
                 </div>
             </form>
         </div>
+        </Layout>
     )
 }
 

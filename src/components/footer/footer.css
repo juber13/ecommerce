@@ -8,11 +8,11 @@
 }
 
 .footer-container {
+  /* position: absolute; */
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  position: absolute;
-  /* bottom: 0; */
+  /* bottom: 0 !important; */
 }
 
 .top-footer {

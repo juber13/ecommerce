@@ -11,6 +11,8 @@ import SignUp from './pages/ragistrations/SignUp'
 import Login from './pages/ragistrations/Login'
 import ProductCard from './components/productCard/ProductCard'
 import ProductInfo from './pages/productInfo/ProductInfo'
+import AddProducts from './pages/admin/pages/AddProducts'
+import UpdateProducts from './pages/admin/pages/UpdateProducts'
 const App = () => {
   return (
     <MyState>
@@ -23,6 +25,8 @@ const App = () => {
           <Route path='/dashboard' element={<DashBoard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
+          <Route path='/addproduct' element={<AddProducts />} />
+          <Route path='/updateproduct' element={<UpdateProducts />} />
           <Route path='/*' element={<NoPage />} />
         </Routes>
       </BrowserRouter>

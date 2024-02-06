@@ -37,7 +37,7 @@ const Footer = () => {
                 </div>
 
             </div>
-            <div className="bottom-footer flex around">
+            {/* <div className="bottom-footer flex around">
                 <div className="left-footer">
                     <h3>E-Bahrat</h3>
                     <p>©️ 2023 E-Bahrat - www.ebharat.com</p>
@@ -53,7 +53,7 @@ const Footer = () => {
                     </ul>
                 </div>
 
-            </div>
+            </div> */}
         </div>
     )
 }

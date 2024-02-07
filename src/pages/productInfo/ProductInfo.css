@@ -1,11 +1,21 @@
+.product-info {
+  display: flex;
+  flex-direction: column;
+  margin: 5px auto !important;
+}
+
 .left-content img {
-  /* width: 400px; */
-  /* height: 400px; */
   max-width: 100%;
-  height: auto;
-  /* display: block; */
-  margin: auto;
-  border-radius: 5px;
+  max-height: 300px;
+  mix-blend-mode: darken;
+  object-fit: contain;
+}
+
+.right-content {
+  align-items: start;
+}
+.right-content p {
+  font-size: 15px;
 }
 
 .right-content .icon {

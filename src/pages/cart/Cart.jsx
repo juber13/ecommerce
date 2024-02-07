@@ -1,61 +1,79 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
+import { useSelector } from 'react-redux';
 
 import './cart.css'
+import NoPage from '../nopage/NoPage';
+import { IoTrashOutline } from "react-icons/io5";
+import { useDispatch } from 'react-redux';
+import { deleteFromCart, updateQty } from '../../redux/cartSlice';
 const Cart = () => {
+    const data = useSelector(store => store.data);
+    const dispatch = useDispatch();
+    const [total, setTotal] = useState(0);
+
+    const handleUpdateQty = (id, value) => {
+        dispatch(updateQty(id, Number(value)));
+        console.log(data.cart);
+    }
+
+    useEffect(() => {
+        setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quentity, 0))
+    }, [data.cart])
+
+
     return (
         <Layout>
             <div className="cart-heading">
                 Cart Items
             </div>
-            <div className='container cart-container flex space-between start'>
+            {data.cart.length > 0 ?
+                <div className='container cart-container flex space-between start'>
 
-                <div className="modals flex gap flex-col ">
-                    <div className='modal flex gap'>
-                        <img src="https://qikink.com/wp-content/uploads/2023/06/all-over-print-tshirt-dropshipping-qikink.webp" alt="" />
-                        <div className='des'>
-                            <h5>Title</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, amet.</p>
-                            <small>$500</small>
-                        </div>
+                    <div className="modals flex gap flex-col ">
+                        {data.cart.map(item => (
+                            <div className='modal flex gap' key={item.id}>
+                                <img src={item.image} alt="" />
+                                <div className='des'>
+                                    <h5>{item.title.slice(0, 5)}</h5>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, amet.</p>
+                                    <div className='flex space-between'>
+                                        <div className='flex gap'>
+                                            <small>${item.price}</small>
+                                            <select name="" id="qty" onChange={(e) => handleUpdateQty(item.id, e.target.value)}>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                            </select>
+                                        </div>
+                                        <IoTrashOutline className='icon trash-icon' onClick={() => dispatch(deleteFromCart(item.id))} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className='modal flex gap'>
-                        <img src="https://qikink.com/wp-content/uploads/2023/06/all-over-print-tshirt-dropshipping-qikink.webp" alt="" />
-                        <div className='des'>
-                            <h5>Title</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, amet.</p>
-                            <small>$500</small>
+
+                    <div className="total-content">
+                        <div className="prices">
+                            <p>Subtotal</p>
+                            <p>Shipping Price</p>
                         </div>
-                    </div>
-                    <div className='modal flex gap'>
-                        <img src="https://qikink.com/wp-content/uploads/2023/06/all-over-print-tshirt-dropshipping-qikink.webp" alt="" />
-                        <div className='des'>
-                            <h5>Title</h5>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, amet.</p>
-                            <small>$500</small>
+
+
+                        <div className="totol-price flex flex-col gap">
+                            <div className="text flex gap">
+                                <h4>Total</h4>
+                                <small>${total}</small>
+                            </div>
+
+                            <div className="">
+                                <button className='buy-now-btn'>Buy Now</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-                <div className="total-content">
-                    <div className="prices">
-                        <p>Subtotal</p>
-                        <p>Shipping Price</p>
-                    </div>
-
-
-                    <div className="totol-price flex flex-col gap">
-                        <div className="text flex gap">
-                            <h4>Total</h4>
-                            <small>$500</small>
-                        </div>
-
-                        <div className="">
-                            <button className='buy-now-btn'>Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                : <div className='flex item-center container justify-center'><h2>No Products Added Yet 🛒</h2></div>}
         </Layout>
     )
 }

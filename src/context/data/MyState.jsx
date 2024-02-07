@@ -1,29 +1,40 @@
-import React,  { useContext, useState } from "react"
-import myContext from "./myContext"
+import React, { useContext, useEffect, useState } from "react";
+import myContext from "./myContext";
+import { setProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
+import {  useDispatch, useSelector } from "react-redux";
 
 const MyState = (props) => {
-    const [mode, setMode] = useState('light');
-    const toggleMode = () => {
-        if (mode === 'light') {
-            setMode('dark');
-            document.body.style.backgroundColor = 'rgb(17,24,39)';
-        }else{
-            setMode('light');
-            document.body.style.backgroundColor = "fff";
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
+    const data = useSelector(store => store.data)
+    const fetchData = async () => {
+        try {
+            setLoading(true);
+            const response = await fetch("https://fakestoreapi.com/products");
+            const result = await response.json();
+            dispatch(setProducts(result)); // Dispatch the setProducts action with the fetched data
+            setLoading(false);
+        } catch (error) {
+            console.error(error);
         }
-    }
+    };
+
+    useEffect(() => {
+        if(data.products.length <= 0){
+            fetchData();
+        }
+    }, []);
 
     return (
-        <myContext.Provider value={{toggleMode , mode}}>
+        <myContext.Provider value={{ loading, setLoading }}>
             {props.children}
         </myContext.Provider>
-    )
-}
+    );
+};
 
-export const getStateCtx = () => {
+export const GetStateCtx = () => {
     const ctx = useContext(myContext);
     return ctx;
-}
-
+};
 
 export default MyState;

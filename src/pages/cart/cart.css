@@ -1,3 +1,7 @@
+.cart-container {
+  position: relative;
+}
+
 .cart-heading {
   padding-top: 1rem;
   text-align: center;
@@ -5,6 +9,7 @@
 
 .modal img {
   width: 100px;
+  mix-blend-mode: darken;
 }
 .modal,
 .total-content {
@@ -19,4 +24,14 @@
   cursor: pointer;
   background: #2756c1;
   color: #fff;
+}
+
+.footer-container {
+  position: absolute;
+}
+
+.trash-icon {
+  font-size: 20px;
+  fill: red;
+  cursor: pointer;
 }

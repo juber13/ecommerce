@@ -1,37 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-// import { BsFillCloudSunFill } from 'react-icons/bs'
-// import { FiSun } from 'react-icons/fi'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { CiMenuBurger } from "react-icons/ci";
-import { IoSunnyOutline } from "react-icons/io5";
-import { IoCartOutline } from "react-icons/io5";
-
-
+import { IoSunnyOutline, IoCartOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-
-
-
-
+import { useSelector } from 'react-redux';
 import './navbar.css'
-
 const Navbar = () => {
+    const data = useSelector(store => store.data);
 
     const [showMenu, setShowMenu] = useState(false)
+    const navigate = useNavigate();
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const handleLogout = () => {
+        localStorage.clear('user');
+        navigate('/login');
+    }
+
     return (
         <header className='flex flex-col'>
             {/* side bar */}
             <div className={`sidebar ${showMenu && 'show'}`}>
                 <div className='sidebar-heading flex space-between item-center'>
-                    <span>E-Bahrat</span>
+                    <span>{user && user?.user?.email.slice(0, 8) + '...'}</span>
                     <IoMdCloseCircleOutline className='icon close' onClick={() => setShowMenu(false)} />
                 </div>
                 <nav className='nav-menu-mobile'>
                     <ul className='flex gap flex-col'>
                         <li><a href="#">All Products</a></li>
-                        <li><Link to="/order">Order</Link></li>
-                        <li><Link to="#">Admin</Link></li>
-                        <li><Link to="/login">Login</Link></li>
+                        {user?.user?.email && <li><Link to="/order">Order</Link></li>}
+                        {user?.user?.email === "juberk1010@gmail.com" ? <li><Link to="/dashboard">Admin</Link></li> : ""}
+                        {user?.user?.email ? <li onClick={handleLogout} style={{ cursor: "pointer" }}>Logout</li> : <li><Link to="/login">Login</Link></li>}
                         <hr />
                         <li><a href="#"><img src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-png" /></a></li>
                     </ul>
@@ -51,7 +52,7 @@ const Navbar = () => {
                     <div className='center-items flex gap hide item-center'>
                         <IoSunnyOutline className='icon' />
                         <Link to="/cart"><IoCartOutline className='icon' /></Link>
-                        <span>0</span>
+                        <span>{data.cart.length}</span>
                     </div>
                 </div>
 
@@ -61,9 +62,10 @@ const Navbar = () => {
                     <nav>
                         <ul className='flex gap item-center right-menu-items'>
                             <li><a href="#">All Products</a></li>
-                            <li><Link to="/order">Order</Link></li>
-                            <li><a href="#">Admin</a></li>
-                            <li><Link to="/login">Login</Link></li>
+                            {user?.user?.email && <li><Link to="/order">Order</Link></li>}
+                            {user?.user?.email === "juberk1010@gmail.com" ? <li><Link to="/dashboard">Admin</Link></li> : ""}
+                            {user?.user?.email ? <li onClick={handleLogout}>Logout</li> : <li><Link to="/login">Login</Link></li>}
+
                             <li className='flex item-center gap'>
                                 <img
                                     src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
@@ -74,7 +76,10 @@ const Navbar = () => {
                             </li>
                             <li><a href="#"><img src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-png" /></a></li>
                             <li><a href="#"><IoSunnyOutline className='icon' /></a></li>
-                            <li><Link to="/cart"><IoCartOutline className='icon' /></Link></li>
+                            <li>
+                                <Link to={user?.user?.email ? "/cart" : "/login"}><IoCartOutline className='icon cart' /></Link>
+                                {data.cart.length > 0 && <span className='total-cart'>{data.cart.length}</span>}
+                            </li>
                         </ul>
                     </nav>
                 </div>

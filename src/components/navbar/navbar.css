@@ -2,6 +2,10 @@ header {
   width: 100%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   /* position: relative; */
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 1000;
 }
 
 .top-nav {
@@ -56,6 +60,7 @@ header img {
   transform: translatex(-1050px);
   top: 12%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  z-index: 1000;
 }
 
 hr {
@@ -85,6 +90,24 @@ hr {
   padding: 1rem;
   align-items: start !important;
   gap: 30px;
+}
+
+.cart {
+  position: relative;
+}
+
+.total-cart {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  position: absolute;
+  /* right: -1%; */
+  bottom: 30%;
+  z-index: 1;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 720px) {

@@ -4,20 +4,31 @@ import { IoStar } from "react-icons/io5";
 import { IoStarHalfOutline } from "react-icons/io5";
 import { FaTwitter, FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
+import { useParams } from 'react-router-dom';
+
 
 import './ProductInfo.css'
-
+import { useSelector } from 'react-redux';
 const ProductInfo = () => {
+
+    const { id } = useParams();
+    console.log(id)
+    const data = useSelector(store => store.data);
+    console.log(data.products)
+    const item = data.products.find(item => item.id === Number(id));
+    console.log(item);
+
+
     return (
         <Layout>
             <div className="container product-info flex gap">
                 <div className="left-content">
-                    <img src="https://qikink.com/wp-content/uploads/2023/06/all-over-print-tshirt-dropshipping-qikink.webp" alt="" />
+                    <img src={item?.image} alt="title-here" />
                 </div>
-                <div className="right-content flex flex-col around">
-                    <div className="title flex gap flex-col">
+                <div className="right-content flex flex-col">
+                    <div className="title flex flex-col">
                         <small>Brand Name</small>
-                        <h3>The Catcher in the Ray</h3>
+                        <h3>{item?.title}</h3>
                         <div className="reviews flex gap">
                             <div className="ratings">
                                 <IoStar />
@@ -37,14 +48,14 @@ const ProductInfo = () => {
                         </div>
 
                         <div className="desciptions">
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eos magni voluptatem rem neque dignissimos. Suscipit tempora dicta expedita assumenda sit.
-                                Lorem ipsum
+                            <p>
+                                {item?.description}
                             </p>
                         </div>
                     </div>
 
                     <div className="footer">
-                        <div className="price flex flex-col itemsstart gap">
+                        <div className="price flex flex-col gap">
                             <h4>Price 245$.00</h4>
                             <button className='btn add-to-cart-btn'>Add To Cart</button>
                         </div>

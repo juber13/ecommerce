@@ -61,7 +61,7 @@ const Cart = () => {
 
                     <div className="total-content">
                         <div className="prices">
-                            <p>Fast Dilevery : 200</p>
+                            <p>Fast Delivery : 200</p>
                             <p>Shipping Price : 300</p>
                         </div>
 

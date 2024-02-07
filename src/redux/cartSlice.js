@@ -11,11 +11,15 @@ const cartSlice = createSlice({
     reducers: {
         setProducts: (state, action) => {
             state.products = action.payload;
+            console.log(state.products)
         },
+
         addToCart: (state, action) => {
-            const defaultQty = 1;
-            const newObj = { ...action.payload, quentity: defaultQty }
+            // const defaultQty = 1;
+            const newObj = { ...action.payload, quentity: 1 }
             state.cart.push(newObj);
+            console.log(Array.from(state.cart))
+            console.log(state.cart);
         },
 
         deleteFromCart: (state, action) => {
@@ -23,10 +27,10 @@ const cartSlice = createSlice({
         },
 
         updateQty: (state, action) => {
-            const { productId, qty } = action.payload; // Access payload object
-            const itemIndex = state.cart.findIndex(item => item.id === productId);
+            const { id, quentity } = action.payload;
+            const itemIndex = state.cart.findIndex(item => item.id === id);
             if (itemIndex !== -1) {
-                state.cart[itemIndex].quantity = qty; // Update the quantity property
+                state.cart[itemIndex].quentity = quentity; // Update the quantity property
             }
         }
     }

@@ -6,7 +6,7 @@ import { FaInstagramSquare, FaFacebookSquare, FaLinkedin, FaTwitter } from "reac
 import './footer.css'
 const Footer = () => {
     return (
-        <div className='container footer-container'>
+        <div className='footer-container'>
             <div className="top-footer flex around">
                 <div className="category">
                     <ul>

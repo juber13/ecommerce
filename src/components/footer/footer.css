@@ -8,9 +8,8 @@
 }
 
 .footer-container {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  width: 100%;
+  background: #f3f4f6;
 }
 
 .top-footer {

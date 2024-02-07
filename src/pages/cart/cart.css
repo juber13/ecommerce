@@ -1,5 +1,7 @@
 .cart-container {
   position: relative;
+  flex-wrap: wrap;
+  gap: 40px;
 }
 
 .cart-heading {
@@ -7,12 +9,17 @@
   text-align: center;
 }
 
+.des p {
+  font-size: 14px;
+}
+
 .modal img {
-  width: 100px;
+  width: 80px;
   mix-blend-mode: darken;
 }
 .modal,
 .total-content {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border: 1px solid #ddd;
   padding: 1rem;
 }
@@ -26,12 +33,18 @@
   color: #fff;
 }
 
-.footer-container {
-  position: absolute;
-}
-
 .trash-icon {
   font-size: 20px;
   fill: red;
   cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .modal img {
+    width: 90px;
+    height: 100px;
+  }
+  .des p {
+    font-size: 10px;
+  }
 }

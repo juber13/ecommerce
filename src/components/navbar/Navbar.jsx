@@ -47,12 +47,16 @@ const Navbar = () => {
                 <div className="left-menu flex item-center gap">
                     <div className='flex item-center gap'>
                         <CiMenuBurger className='icon active menu' onClick={() => setShowMenu(!showMenu)} />
-                        <h3><Link to="/">E-Bharat</Link></h3>
+                        <h3><Link to="/">E.COM</Link></h3>
                     </div>
                     <div className='center-items flex gap hide item-center'>
-                        <IoSunnyOutline className='icon' />
-                        <Link to="/cart"><IoCartOutline className='icon' /></Link>
-                        <span>{data.cart.length}</span>
+                        <ul className='flex gap'>
+                            <li><a href="#"><IoSunnyOutline className='icon' /></a></li>
+                            <li>
+                                <Link to={user?.user?.email ? "/cart" : "/login"}><IoCartOutline className='icon cart' /></Link>
+                                {data.cart.length > 0 && <span className='total-cart'>{data.cart.length}</span>}
+                            </li>
+                        </ul>
                     </div>
                 </div>
 

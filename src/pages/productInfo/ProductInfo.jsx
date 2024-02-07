@@ -5,20 +5,16 @@ import { IoStarHalfOutline } from "react-icons/io5";
 import { FaTwitter, FaFacebookSquare, FaYoutube } from "react-icons/fa";
 
 import { useParams } from 'react-router-dom';
-
-
-import './ProductInfo.css'
 import { useSelector } from 'react-redux';
+import { addToCart } from '../../redux/cartSlice';
+import './ProductInfo.css'
+import { useDispatch } from 'react-redux';
 const ProductInfo = () => {
+    const dispatch = useDispatch();
 
     const { id } = useParams();
-    console.log(id)
     const data = useSelector(store => store.data);
-    console.log(data.products)
     const item = data.products.find(item => item.id === Number(id));
-    console.log(item);
-
-
     return (
         <Layout>
             <div className="container product-info flex gap">
@@ -57,7 +53,9 @@ const ProductInfo = () => {
                     <div className="footer">
                         <div className="price flex flex-col gap">
                             <h4>Price 245$.00</h4>
-                            <button className='btn add-to-cart-btn'>Add To Cart</button>
+                            <button className='btn add-to-cart-btn' onClick={() => dispatch(addToCart(item))}>
+                            {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
+                            </button>
                         </div>
                     </div>
 

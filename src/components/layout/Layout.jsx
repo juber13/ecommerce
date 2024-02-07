@@ -3,7 +3,7 @@ import Navbar from '../navbar/Navbar'
 import Footer from '../footer/Footer'
 const Layout = ({ children }) => {
     return (
-        <div>
+        <div className='flex flex-col space-between' style={{height: "100vh"}}>
             <Navbar />
             <div className="content">
                 {children}

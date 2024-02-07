@@ -12,20 +12,25 @@ const Cart = () => {
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
 
+    // const handleUpdateQty = (id, value) => {
+    //     dispatch(updateQty({id , quentity : value}));
+    //     console.log(data.cart);
+    // }
+
     const handleUpdateQty = (id, value) => {
-        dispatch(updateQty(id, Number(value)));
-        console.log(data.cart);
-    }
+        dispatch(updateQty({ id, quentity: Number(value) }));
+    };
 
     useEffect(() => {
         setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quentity, 0))
+        console.log('rr');
     }, [data.cart])
 
 
     return (
         <Layout>
             <div className="cart-heading">
-                Cart Items
+                <h3>Cart Items {data.cart.length}</h3>
             </div>
             {data.cart.length > 0 ?
                 <div className='container cart-container flex space-between start'>
@@ -36,7 +41,7 @@ const Cart = () => {
                                 <img src={item.image} alt="" />
                                 <div className='des'>
                                     <h5>{item.title.slice(0, 5)}</h5>
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, amet.</p>
+                                    <p>{item.description}</p>
                                     <div className='flex space-between'>
                                         <div className='flex gap'>
                                             <small>${item.price}</small>
@@ -56,15 +61,15 @@ const Cart = () => {
 
                     <div className="total-content">
                         <div className="prices">
-                            <p>Subtotal</p>
-                            <p>Shipping Price</p>
+                            <p>Fast Dilevery : 200</p>
+                            <p>Shipping Price : 300</p>
                         </div>
 
 
                         <div className="totol-price flex flex-col gap">
                             <div className="text flex gap">
                                 <h4>Total</h4>
-                                <small>${total}</small>
+                                <small>${Math.floor(total) + 200 + 300}</small>
                             </div>
 
                             <div className="">

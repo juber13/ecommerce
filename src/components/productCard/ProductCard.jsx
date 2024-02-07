@@ -35,8 +35,8 @@ const ProductCard = () => {
                         <img src={item.image} alt="images" onClick={() => showDetail(item.id)} />
                         {/* </Link> */}
                         {/* </div> */}
-                        <small>{item.title.slice(0, 15) + "..."}</small>
                         <small><strong>{item.category}</strong></small>
+                        <small>{item.title.slice(0, 15) + "..."}</small>
                         <small>{item.price}</small>
                         <button className='btn add-to-cart-btn' onClick={() => addItem(item)}>
                             {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}

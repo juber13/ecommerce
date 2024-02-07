@@ -53,12 +53,12 @@ header img {
   width: 300px;
   position: absolute;
   background: #fff;
-  height: calc(100vh - 108px);
+  height: calc(100vh - 90px);
   align-items: start;
   /* padding: 1rem; */
   transition: all 0.4s ease-in-out;
   transform: translatex(-1050px);
-  top: 12%;
+  top: 100%;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   z-index: 1000;
 }
@@ -115,7 +115,6 @@ hr {
     width: 100%;
     justify-content: space-between;
     padding: 0.5rem;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
   .bottom-nav {
     padding: 0;

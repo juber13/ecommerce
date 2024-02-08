@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './resgistration.css'
-// import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 

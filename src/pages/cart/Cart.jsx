@@ -3,19 +3,14 @@ import Layout from '../../components/layout/Layout'
 import { useSelector } from 'react-redux';
 
 import './cart.css'
-import NoPage from '../nopage/NoPage';
 import { IoTrashOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
 import { deleteFromCart, updateQty } from '../../redux/cartSlice';
+
 const Cart = () => {
     const data = useSelector(store => store.data);
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
-
-    // const handleUpdateQty = (id, value) => {
-    //     dispatch(updateQty({id , quentity : value}));
-    //     console.log(data.cart);
-    // }
 
     const handleUpdateQty = (id, value) => {
         dispatch(updateQty({ id, quentity: Number(value) }));
@@ -23,7 +18,6 @@ const Cart = () => {
 
     useEffect(() => {
         setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quentity, 0))
-        console.log('rr');
     }, [data.cart])
 
 

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import myContext from "./myContext";
-import { setProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
-import {  useDispatch, useSelector } from "react-redux";
+import { setProducts, setFilteredProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
+import { useDispatch, useSelector } from "react-redux";
 
 const MyState = (props) => {
     const dispatch = useDispatch();
@@ -13,6 +13,7 @@ const MyState = (props) => {
             const response = await fetch("https://fakestoreapi.com/products");
             const result = await response.json();
             dispatch(setProducts(result)); // Dispatch the setProducts action with the fetched data
+            dispatch(setFilteredProducts(result)); // Dispatch the setProducts action with the fetched data
             setLoading(false);
         } catch (error) {
             console.error(error);
@@ -20,7 +21,7 @@ const MyState = (props) => {
     };
 
     useEffect(() => {
-        if(data.products.length <= 0){
+        if (data.products.length <= 0) {
             fetchData();
         }
     }, []);

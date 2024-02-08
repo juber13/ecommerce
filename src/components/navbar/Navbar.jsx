@@ -6,6 +6,7 @@ import { IoSunnyOutline, IoCartOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
 import { useSelector } from 'react-redux';
 import './navbar.css'
+
 const Navbar = () => {
     const data = useSelector(store => store.data);
 
@@ -47,7 +48,7 @@ const Navbar = () => {
                 <div className="left-menu flex item-center gap">
                     <div className='flex item-center gap'>
                         <CiMenuBurger className='icon active menu' onClick={() => setShowMenu(!showMenu)} />
-                        <h3><Link to="/">E.COM</Link></h3>
+                        <h3 className='logo'><Link to="/">E.COM</Link></h3>
                     </div>
                     <div className='center-items flex gap hide item-center'>
                         <ul className='flex gap'>

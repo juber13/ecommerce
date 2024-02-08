@@ -13,7 +13,6 @@ import NoPage from './pages/nopage/NoPage'
 import MyState from './context/data/MyState'
 import SignUp from './pages/ragistrations/SignUp'
 import Login from './pages/ragistrations/Login'
-import ProductCard from './components/productCard/ProductCard'
 import ProductInfo from './pages/productInfo/ProductInfo'
 import AddProducts from './pages/admin/pages/AddProducts'
 import UpdateProducts from './pages/admin/pages/UpdateProducts'
@@ -77,7 +76,6 @@ export const ProtectedRoutes = ({ children }) => {
 
 export const ProtectedRoutesForAdmin = ({ children }) => {
   const admin = JSON.parse(localStorage.getItem('user'))
-  // console.log(admin?.user?.email)
   if (admin?.user?.email === 'juberk1010@gmail.com') {
     return children
   }

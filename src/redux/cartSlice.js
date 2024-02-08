@@ -2,24 +2,26 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const data = {
     products: [],
-    cart: []
+    cart: [],
+    filteredProducts: []
 };
 
 const cartSlice = createSlice({
     name: "cart",
     initialState: data,
+    
     reducers: {
         setProducts: (state, action) => {
             state.products = action.payload;
-            console.log(state.products)
+        },
+
+        setFilteredProducts: (state, action) => {
+            state.filteredProducts = action.payload;
         },
 
         addToCart: (state, action) => {
-            // const defaultQty = 1;
             const newObj = { ...action.payload, quentity: 1 }
             state.cart.push(newObj);
-            console.log(Array.from(state.cart))
-            console.log(state.cart);
         },
 
         deleteFromCart: (state, action) => {
@@ -36,5 +38,5 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addToCart, deleteFromCart, setProducts, updateQty } = cartSlice.actions;
+export const { addToCart, deleteFromCart, setProducts, updateQty , setFilteredProducts } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -10,67 +10,42 @@ import './filter.css';
 
 const Filter = () => {
     const data = useSelector(store => store.data);
-    const [category, setCategory] = useState([])
     const dispatch = useDispatch();
-    const [selectedCategory, setSelectedCategory] = useState('All');
+    const [setSelectedCategory] = useState('All');
     const [price, setSelectedPrice] = useState(100);
-    const [val, setValue] = useState("");
 
-    const { setName } = GetStateCtx();
+    const { inputValue , setInputValue } = GetStateCtx();
 
     const filterItem = (e) => {
-        setValue(e.target.value);
-        if (val.length > 0) {
-            const newItem = data.products.filter(item => item.title.toLowerCase().includes(val));
-            dispatch(setProducts(newItem));
-        } else {
-            dispatch(setProducts(data.filteredProducts));
-        }
+        setInputValue(e.target.value);
     }
 
 
     const showCategoriesWise = (e) => {
         const selectedValue = e.target.value;
-        setName(selectedValue);
-        if (isNaN(selectedValue)) {
-            setSelectedCategory(selectedValue);
-        } else {
-            setSelectedPrice(e.target.value);
-        }
-        if (selectedValue === "All") {
-            dispatch(setProducts(data.filteredProducts));
-        } else {
-            const filterData = data.filteredProducts.filter(product =>
-                product.price <= selectedValue || product.category === selectedValue
-            );
-            dispatch(setProducts(filterData));
-        }
+        setInputValue(selectedValue);
     };
-
-    // useEffect(() => {
-    //     setCategory(["All", ...new Set(data.filteredProducts.map(item => item.category))])
-    // }, [data.products])
 
     return (
         <div className='container'>
             <div className='content flex gap flex-col'>
                 <div className='input flex1'>
                     <IoSearchOutline className='icon search' />
-                    <input type="text" placeholder='Search Item...' onKeyUp={filterItem} defaultValue={val} />
+                    <input type="text" placeholder='Search Item...' onKeyUp={filterItem} defaultValue={inputValue} />
                 </div>
 
                 <div className="options">
                     <div className="heading-filter flex1 space-between">
                         <h5>Filter</h5>
                         <h5 onClick={() => {
-                            setSelectedCategory('All');
+                            setSelectedCategory('mens');
                             setSelectedPrice('0 - 100');
                             dispatch(setProducts(data.filteredProducts));
                         }} style={{ cursor: "pointer" }}>Reset Filter</h5>
                     </div>
 
                     <div className="selects flex gap">
-                        <select name="category1" id="option1" className='select-category' onChange={showCategoriesWise} value={selectedCategory}>
+                        <select name="category1" id="option1" className='select-category' onChange={showCategoriesWise} value={inputValue}>
                             <option value="Men's">{"Men's"}</option>
                             <option value="phone">Phone</option>
                             <option value="Womens">Womens</option>

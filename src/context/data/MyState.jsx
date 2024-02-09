@@ -7,10 +7,11 @@ const MyState = (props) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState("mens");
+    const [inputVal, setInputValue] = useState('jacket');
 
 
     const fetchData = async () => {
-        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${name}&page=1&country=US&category_id=aps`;
+        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${inputVal}&page=1&country=US&category_id=aps`;
         const options = {
             method: 'GET',
             headers: {
@@ -32,10 +33,10 @@ const MyState = (props) => {
 
     useEffect(() => {
         fetchData();
-    }, [name]);
+    }, [name, inputVal]);
 
     return (
-        <myContext.Provider value={{ loading, setLoading, setName }}>
+        <myContext.Provider value={{ loading, setLoading, setName, inputVal, setInputValue }}>
             {props.children}
         </myContext.Provider>
     );

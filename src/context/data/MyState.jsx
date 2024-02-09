@@ -1,33 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
 import myContext from "./myContext";
-import { setProducts, setFilteredProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
-import { useDispatch, useSelector } from "react-redux";
+import { setFilteredProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
+import { useDispatch } from "react-redux";
 
 const MyState = (props) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const data = useSelector(store => store.data)
+    const [name, setName] = useState("mens");
+
+
     const fetchData = async () => {
+        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${name}&page=1&country=US&category_id=aps`;
+        const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '7ef20892e3msh89930c7e4e25d1ep1ced24jsn36fe010d7d9d',
+                'X-RapidAPI-Host': 'real-time-amazon-data.p.rapidapi.com'
+            }
+        };
         try {
-            setLoading(true);
-            const response = await fetch("https://fakestoreapi.com/products");
+            setLoading(true)
+            const response = await fetch(url, options);
             const result = await response.json();
-            dispatch(setProducts(result)); // Dispatch the setProducts action with the fetched data
-            dispatch(setFilteredProducts(result)); // Dispatch the setProducts action with the fetched data
+            dispatch(setFilteredProducts(result.data.products))
             setLoading(false);
         } catch (error) {
             console.error(error);
         }
-    };
+    }
+
 
     useEffect(() => {
-        if (data.products.length <= 0) {
-            fetchData();
-        }
-    }, []);
+        fetchData();
+    }, [name]);
 
     return (
-        <myContext.Provider value={{ loading, setLoading }}>
+        <myContext.Provider value={{ loading, setLoading, setName }}>
             {props.children}
         </myContext.Provider>
     );

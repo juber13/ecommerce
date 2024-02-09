@@ -3,6 +3,8 @@ import { IoSearchOutline } from "react-icons/io5";
 import { useSelector } from 'react-redux';
 import { setProducts } from '../../redux/cartSlice';
 import { useDispatch } from 'react-redux';
+
+import { GetStateCtx } from '../../context/data/MyState';
 import './filter.css';
 
 
@@ -13,6 +15,8 @@ const Filter = () => {
     const [selectedCategory, setSelectedCategory] = useState('All');
     const [price, setSelectedPrice] = useState(100);
     const [val, setValue] = useState("");
+
+    const { setName } = GetStateCtx();
 
     const filterItem = (e) => {
         setValue(e.target.value);
@@ -27,6 +31,7 @@ const Filter = () => {
 
     const showCategoriesWise = (e) => {
         const selectedValue = e.target.value;
+        setName(selectedValue);
         if (isNaN(selectedValue)) {
             setSelectedCategory(selectedValue);
         } else {
@@ -42,9 +47,9 @@ const Filter = () => {
         }
     };
 
-    useEffect(() => {
-        setCategory(["All", ...new Set(data.filteredProducts.map(item => item.category))])
-    }, [data.products])
+    // useEffect(() => {
+    //     setCategory(["All", ...new Set(data.filteredProducts.map(item => item.category))])
+    // }, [data.products])
 
     return (
         <div className='container'>
@@ -66,7 +71,11 @@ const Filter = () => {
 
                     <div className="selects flex gap">
                         <select name="category1" id="option1" className='select-category' onChange={showCategoriesWise} value={selectedCategory}>
-                            {category.map(cate => <option key={cate} value={cate}>{cate}</option>)}
+                            <option value="Men's">{"Men's"}</option>
+                            <option value="phone">Phone</option>
+                            <option value="Womens">Womens</option>
+                            <option value="electronic">electronic</option>
+                            <option value="jwelery">jwelery</option>
                         </select>
 
                         <select name="category2" id="option2" className='select-category' onChange={showCategoriesWise} value={price}>

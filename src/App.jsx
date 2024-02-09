@@ -32,7 +32,7 @@ const App = () => {
           } />
 
           <Route path='/cart' element={<Cart />} />
-          <Route path='/productInfo/:id' element={<ProductInfo />} />
+          <Route path='/product/:id' element={<ProductInfo />} />
 
           <Route path='/dashboard' element={
             <ProtectedRoutesForAdmin>

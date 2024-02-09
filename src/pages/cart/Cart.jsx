@@ -17,6 +17,7 @@ const Cart = () => {
 
 
     const handleUpdateQty = (id, value) => {
+        console.log(id, value)
         dispatch(updateQty({ id, quentity: Number(value) }));
     };
 
@@ -47,10 +48,10 @@ const Cart = () => {
     }
 
     useEffect(() => {
-        setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quentity, 0))
+        setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.product_price.slice(1)) * curr.quentity, 0))
     }, [data.cart])
 
-
+    console.log(total);
     return (
         <Layout>
             <div className="cart-heading">
@@ -61,22 +62,22 @@ const Cart = () => {
 
                     <div className="modals flex gap flex-col ">
                         {data.cart.map(item => (
-                            <div className='modal flex gap' key={item.id}>
-                                <img src={item.image} alt="" />
+                            <div className='modal flex gap' key={item.asin}>
+                                <img src={item.product_photo} alt="" />
                                 <div className='des'>
-                                    <h5>{item.title.slice(0, 5)}</h5>
-                                    <p>{item.description}</p>
+                                    <h5>{item.product_title.slice(0, 5)}</h5>
+                                    <p>{item.product_price}</p>
                                     <div className='flex space-between'>
                                         <div className='flex gap'>
-                                            <small>Rs {item.price}</small>
-                                            <select name="" id="qty" onChange={(e) => handleUpdateQty(item.id, e.target.value)}>
+                                            <small>Rs {item.product_price}</small>
+                                            <select name="" id="qty" onChange={(e) => handleUpdateQty(item.asin, e.target.value)}>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
                                                 <option value="4">4</option>
                                             </select>
                                         </div>
-                                        <IoTrashOutline className='icon trash-icon' onClick={() => dispatch(deleteFromCart(item.id))} />
+                                        <IoTrashOutline className='icon trash-icon' onClick={() => dispatch(deleteFromCart(item.asin))} />
                                     </div>
                                 </div>
                             </div>

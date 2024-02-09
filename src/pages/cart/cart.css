@@ -24,6 +24,11 @@
   padding: 1rem;
 }
 
+.modal,
+.des {
+  flex: 1;
+}
+
 .buy-now-btn {
   padding: 0.5rem;
   border: none;
@@ -46,5 +51,9 @@
   }
   .des p {
     font-size: 10px;
+  }
+
+  .total-content {
+    flex: 2;
   }
 }

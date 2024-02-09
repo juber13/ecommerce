@@ -30,12 +30,12 @@ const cartSlice = createSlice({
         },
 
         deleteFromCart: (state, action) => {
-            state.cart = state.cart.filter((item) => item.id !== action.payload);
+            state.cart = state.cart.filter((item) => item.asin !== action.payload);
         },
 
         updateQty: (state, action) => {
             const { id, quentity } = action.payload;
-            const itemIndex = state.cart.findIndex(item => item.id === id);
+            const itemIndex = state.cart.findIndex(item => item.asin === id);
             if (itemIndex !== -1) {
                 state.cart[itemIndex].quentity = quentity; // Update the quantity property
             }

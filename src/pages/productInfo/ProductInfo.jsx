@@ -11,20 +11,20 @@ import './ProductInfo.css'
 import { useDispatch } from 'react-redux';
 const ProductInfo = () => {
     const dispatch = useDispatch();
-
     const { id } = useParams();
     const data = useSelector(store => store.data);
-    const item = data.products.find(item => item.id === Number(id));
+    const item = data.filteredProducts.find(item => item.asin === id);
+    console.log(item)
     return (
         <Layout>
             <div className="container product-info flex gap">
                 <div className="left-content">
-                    <img src={item?.image} alt="title-here" />
+                    <img src={item.product_photo} alt="title-here" />
                 </div>
                 <div className="right-content flex flex-col">
                     <div className="title flex flex-col">
                         <small>Brand Name</small>
-                        <h3>{item?.title}</h3>
+                        <h3>{item.product_title}</h3>
                         <div className="reviews flex gap">
                             <div className="ratings">
                                 <IoStar />
@@ -32,7 +32,7 @@ const ProductInfo = () => {
                                 <IoStar />
                                 <IoStarHalfOutline />
                                 {" "}
-                                <small>4 Reviews</small>
+                                <small>{item.product_star_rating} Reviews</small>
                             </div>
 
                             <div className="social-media-icons flex gap item-center">
@@ -45,14 +45,14 @@ const ProductInfo = () => {
 
                         <div className="desciptions">
                             <p>
-                                {item?.description}
+                                {item.description}
                             </p>
                         </div>
                     </div>
 
                     <div className="footer">
                         <div className="price flex flex-col gap">
-                            <h4>Price Rs :{item.price}</h4>
+                            <h4>Price :{item?.product_price}</h4>
                             <button className='btn add-to-cart-btn' onClick={() => dispatch(addToCart(item))}>
                                 {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
                             </button>

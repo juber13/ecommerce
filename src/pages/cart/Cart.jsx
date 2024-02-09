@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../../components/layout/Layout'
 import { useSelector } from 'react-redux';
 
-import './cart.css'
 import { IoTrashOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
-import { deleteFromCart, setProducts, updateQty , addToCart } from '../../redux/cartSlice';
+import { deleteFromCart, updateQty, clearCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+
+import './cart.css'
 const Cart = () => {
     const data = useSelector(store => store.data);
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
     const navigate = useNavigate();
+
 
     const handleUpdateQty = (id, value) => {
         dispatch(updateQty({ id, quentity: Number(value) }));
@@ -24,14 +26,14 @@ const Cart = () => {
             console.log(total)
             var options = {
                 key: 'rzp_test_fd84FGYqXlmRKr', // Enter your Razorpay Key ID
-                amount: Math.floor((total + 400) * 72), // Amount is in currency subunits. 1000 = 10 INR
+                amount: Math.floor((total + 500) * 100), // Amount is in currency subunits. 1000 = 10 INR
                 currency: 'INR',
                 name: 'E.COM',
                 description: 'Total Amount To Be Paid',
                 image: 'https://avatars.githubusercontent.com/u/34296950?v=4',
                 handler: function (response) {
                     toast.success('Payment successful: ' + response.razorpay_payment_id);
-                    // console.log('do here');
+                    dispatch(clearCart());
                     navigate('/');
                 }
             }

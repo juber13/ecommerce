@@ -9,7 +9,7 @@ const data = {
 const cartSlice = createSlice({
     name: "cart",
     initialState: data,
-    
+
     reducers: {
         setProducts: (state, action) => {
             state.products = action.payload;
@@ -20,8 +20,13 @@ const cartSlice = createSlice({
         },
 
         addToCart: (state, action) => {
+            console.log(action.payload)
             const newObj = { ...action.payload, quentity: 1 }
             state.cart.push(newObj);
+        },
+
+        clearCart: (state, action) => {
+            state.cart = [];
         },
 
         deleteFromCart: (state, action) => {
@@ -38,5 +43,5 @@ const cartSlice = createSlice({
     }
 });
 
-export const { addToCart, deleteFromCart, setProducts, updateQty , setFilteredProducts } = cartSlice.actions;
+export const { addToCart, deleteFromCart, setProducts, updateQty, setFilteredProducts, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -45,7 +45,7 @@ const ProductInfo = () => {
 
                         <div className="desciptions">
                             <p>
-                                {item.description}
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio quo numquam, dolore atque officia esse dolorem laudantium, sed adipisci rerum dignissimos aspernatur facere id. Ipsum maiores minima harum veritatis molestiae.
                             </p>
                         </div>
                     </div>

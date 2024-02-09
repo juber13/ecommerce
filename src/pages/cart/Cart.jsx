@@ -62,9 +62,9 @@ const Cart = () => {
 
                     <div className="modals flex gap flex-col ">
                         {data.cart.map(item => (
-                            <div className='modal flex gap' key={item.asin}>
+                            <div className='modal flex gap flex-1' key={item.asin}>
                                 <img src={item.product_photo} alt="" />
-                                <div className='des'>
+                                <div className='des flex-1'>
                                     <h5>{item.product_title.slice(0, 5)}</h5>
                                     <p>{item.product_price}</p>
                                     <div className='flex space-between'>

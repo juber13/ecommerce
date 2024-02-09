@@ -31,8 +31,8 @@ const ProductCard = () => {
                     <div className="card flex flex-col" key={item.id}>
                         <img src={item.image} alt="images" onClick={() => showDetail(item.id)} />
                         <small><strong>{item.category}</strong></small>
-                        <small>{item.title.slice(0, 15) + "..."}</small>
-                        <small>${item.price}</small>
+                        <small>{item.title.slice(0, 10) + "..."}</small>
+                        <small>Rs {item.price}</small>
                         <button className='btn add-to-cart-btn' onClick={() => addItem(item)}>
                             {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
                         </button>

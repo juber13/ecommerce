@@ -52,9 +52,9 @@ const ProductInfo = () => {
 
                     <div className="footer">
                         <div className="price flex flex-col gap">
-                            <h4>Price 245$.00</h4>
+                            <h4>Price Rs :{item.price}</h4>
                             <button className='btn add-to-cart-btn' onClick={() => dispatch(addToCart(item))}>
-                            {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
+                                {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
                             </button>
                         </div>
                     </div>

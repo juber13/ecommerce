@@ -5,16 +5,44 @@ import { useSelector } from 'react-redux';
 import './cart.css'
 import { IoTrashOutline } from "react-icons/io5";
 import { useDispatch } from 'react-redux';
-import { deleteFromCart, updateQty } from '../../redux/cartSlice';
-
+import { deleteFromCart, setProducts, updateQty , addToCart } from '../../redux/cartSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const Cart = () => {
     const data = useSelector(store => store.data);
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
+    const navigate = useNavigate();
 
     const handleUpdateQty = (id, value) => {
         dispatch(updateQty({ id, quentity: Number(value) }));
     };
+
+    const payNow = () => {
+
+        try {
+            console.log(total)
+            var options = {
+                key: 'rzp_test_fd84FGYqXlmRKr', // Enter your Razorpay Key ID
+                amount: Math.floor((total + 400) * 72), // Amount is in currency subunits. 1000 = 10 INR
+                currency: 'INR',
+                name: 'E.COM',
+                description: 'Total Amount To Be Paid',
+                image: 'https://avatars.githubusercontent.com/u/34296950?v=4',
+                handler: function (response) {
+                    toast.success('Payment successful: ' + response.razorpay_payment_id);
+                    // console.log('do here');
+                    navigate('/');
+                }
+            }
+            var rzp = new Razorpay(options);
+            rzp.open();
+            console.log(rzp);
+        } catch (err) {
+            console.log(err);
+        }
+        // e.preventDefault();
+    }
 
     useEffect(() => {
         setTotal(data.cart.reduce((acc, curr) => acc + Number(curr.price) * curr.quentity, 0))
@@ -38,7 +66,7 @@ const Cart = () => {
                                     <p>{item.description}</p>
                                     <div className='flex space-between'>
                                         <div className='flex gap'>
-                                            <small>${item.price}</small>
+                                            <small>Rs {item.price}</small>
                                             <select name="" id="qty" onChange={(e) => handleUpdateQty(item.id, e.target.value)}>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -63,11 +91,11 @@ const Cart = () => {
                         <div className="totol-price flex flex-col gap">
                             <div className="text flex gap">
                                 <h4>Total</h4>
-                                <small>${Math.floor(total) + 200 + 300}</small>
+                                <small>Rs {Math.floor(total) + 200 + 300}</small>
                             </div>
 
                             <div className="">
-                                <button className='buy-now-btn'>Buy Now</button>
+                                <button className='buy-now-btn' onClick={payNow}>Buy Now</button>
                             </div>
                         </div>
                     </div>

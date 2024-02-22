@@ -1,12 +1,15 @@
 import React from 'react'
 import '../productCard/products.css'
+import { useSelector } from 'react-redux'
+
 const Skeleton = () => {
+    const data = useSelector(store => store.data)
     return (
         <div className="cards flex gap">
             {Array.from({ length: 13 }).map((item, i) => (
                 <>
                     <a className="card" id="card-link" target="_blank" key={i}>
-                        <div className="card__header" key={i}>
+                        <div className="card__header">
                             <div>
                                 <img className="card__header header__img skeleton" id="logo-img" alt="" />
                             </div>

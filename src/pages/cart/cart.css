@@ -1,7 +1,7 @@
 .cart-container {
   position: relative;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 20px;
 }
 
 .cart-heading {
@@ -17,15 +17,15 @@
   width: 80px;
   mix-blend-mode: darken;
 }
+
 .modal,
 .total-content {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   border: 1px solid #ddd;
   padding: 1rem;
 }
-
-.flex-1 {
-  flex: 1 !important;
+.modals {
+  flex: 1;
 }
 
 .buy-now-btn {
@@ -50,6 +50,7 @@
   }
   .des p {
     font-size: 10px;
+    background: red;
   }
 
   .total-content,

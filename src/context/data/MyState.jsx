@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import myContext from "./myContext";
-import { setFilteredProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
-import { useDispatch } from "react-redux";
+import { setFilteredProducts, setProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice
+import { useDispatch, useSelector } from "react-redux";
 
 const MyState = (props) => {
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
-    const [name, setName] = useState("mens");
-    const [inputVal, setInputValue] = useState('jacket');
 
-
+    const data = useSelector(store => store.data);
     const fetchData = async () => {
-        const url = `https://real-time-amazon-data.p.rapidapi.com/search?query=${inputVal}&page=1&country=US&category_id=aps`;
+        const url = `https://fakestoreapi.com/products`;
         const options = {
             method: 'GET',
             headers: {
@@ -23,7 +21,8 @@ const MyState = (props) => {
             setLoading(true)
             const response = await fetch(url, options);
             const result = await response.json();
-            dispatch(setFilteredProducts(result.data.products))
+            dispatch(setFilteredProducts(result))
+            dispatch(setProducts(result))
             setLoading(false);
         } catch (error) {
             console.error(error);
@@ -32,11 +31,13 @@ const MyState = (props) => {
 
 
     useEffect(() => {
-        fetchData();
-    }, [name, inputVal]);
+        if (!data.filteredProducts.length) {
+            fetchData();
+        }
+    }, []);
 
     return (
-        <myContext.Provider value={{ loading, setLoading, setName, inputVal, setInputValue }}>
+        <myContext.Provider value={{ loading, setLoading }}>
             {props.children}
         </myContext.Provider>
     );

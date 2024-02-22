@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart } from '../../redux/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { IoStar, IoStarHalfOutline } from "react-icons/io5";
+
 import './products.css'
 import { GetStateCtx } from '../../context/data/MyState';
-import Loader from '../loder/Loader';
 import Skeleton from '../skelten/Skeleton';
+
 const ProductCard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -13,7 +15,7 @@ const ProductCard = () => {
     const { loading } = GetStateCtx();
 
     const addItem = (item) => {
-        const itemFound = data.cart.some(product => product.asin === item.asin);
+        const itemFound = data.cart.some(product => product.id === item.id);
         if (!itemFound) {
             dispatch(addToCart(item));
         }
@@ -23,6 +25,8 @@ const ProductCard = () => {
         navigate(`/product/${id}`)
     }
 
+
+
     return (
         <div className='container'>
             <div className="heading">
@@ -31,14 +35,18 @@ const ProductCard = () => {
             {loading && <Skeleton />}
             <div className="cards flex gap">
                 {data.filteredProducts.map(item => (
-                    <div className="card flex flex-col" key={item.asin}>
-                        <img src={item.product_photo} alt="images" onClick={() => showDetail(item.asin)} />
+                    <div className="card flex flex-col" key={item.id}>
+                        <img src={item.image} alt="images" onClick={() => showDetail(item.id)} />
                         <small><strong>{item.category}</strong></small>
-                        <small>{item.product_title.slice(0, 10) + "..."}</small>
-                        <small>Rs {item.product_price}</small>
-                        <small>Rating {item.product_star_rating}</small>
+                        <small>{item.title.slice(0, 10) + "..."}</small>
+                        <small>Rs {item.price}</small>
+                        <span>
+                            {Array.from({ length: Number(item.rating.rate)}).map((_, i) => <IoStar key={i} style={{ fill: "orange" }} />)}
+                            {" "}
+                            <small>{item.rating.rate}</small>
+                        </span>
                         <button className='btn add-to-cart-btn' onClick={() => addItem(item)}>
-                            {data.cart.some(pro => pro.asin === item.asin) ? "Added" : "Add To Cart"}
+                            {data.cart.some(pro => pro.id === item.id) ? "Added" : "Add To Cart"}
                         </button>
                     </div>
                 ))}

@@ -26,31 +26,31 @@ const App = () => {
           <Route path='/' element={<Home />} />
 
           <Route path='/order' element={
-            <ProtectedRoutes>
+            // <ProtectedRoutes>
               <Order />
-            </ProtectedRoutes>
+            // </ProtectedRoutes>
           } />
 
           <Route path='/cart' element={<Cart />} />
           <Route path='/product/:id' element={<ProductInfo />} />
 
           <Route path='/dashboard' element={
-            <ProtectedRoutesForAdmin>
+            // <ProtectedRoutesForAdmin>
               <DashBoard />
-            </ProtectedRoutesForAdmin>
+            // </ProtectedRoutesForAdmin>
           } />
 
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/addproduct' element={
-            <ProtectedRoutesForAdmin>
+            // <ProtectedRoutesForAdmin>
               <AddProducts />
-            </ProtectedRoutesForAdmin>
+            // </ProtectedRoutesForAdmin>
           } />
           <Route path='/updateproduct' element={
-            <ProtectedRoutesForAdmin>
+            // <ProtectedRoutesForAdmin>
               <UpdateProducts />
-            </ProtectedRoutesForAdmin>
+            // </ProtectedRoutesForAdmin>
           } />
 
           <Route path='/*' element={<NoPage />} />
@@ -64,22 +64,22 @@ const App = () => {
 export default App
 
 
-export const ProtectedRoutes = ({ children }) => {
-  if (localStorage.getItem('user')) {
-    return children
-  }
-  else {
-    return <Navigate to='/login' />
-  }
-}
+// export const ProtectedRoutes = ({ children }) => {
+//   if (localStorage.getItem('user')) {
+//     return children
+//   }
+//   else {
+//     return <Navigate to='/login' />
+//   }
+// }
 
 
-export const ProtectedRoutesForAdmin = ({ children }) => {
-  const admin = JSON.parse(localStorage.getItem('user'))
-  if (admin?.user?.email === 'juberk1010@gmail.com') {
-    return children
-  }
-  else {
-    return <Navigate to='/login' />
-  }
-}
+// export const ProtectedRoutesForAdmin = ({ children }) => {
+//   const admin = JSON.parse(localStorage.getItem('user'))
+//   if (admin?.user?.email === 'juberk1010@gmail.com') {
+//     return children
+//   }
+//   else {
+//     return <Navigate to='/login' />
+//   }
+// }

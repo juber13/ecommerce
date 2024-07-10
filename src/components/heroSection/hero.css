@@ -1,15 +1,17 @@
 .slider-container{
     width: 100%;
+    position: relative;
 }
 
 .slider{
     width: 100%;
-    position: relative;
 }
 
 .slider img{
     width: 100%;
     object-fit: contain;
+    background-position: center;
+    background-size: contain;
 }
 
 .button{
@@ -33,4 +35,10 @@
     cursor: pointer;
     color: #fff;
     font-weight: bold;
+}
+
+@media screen and (max-width : 500px) {
+    .button{
+        top: 30%;
+    }
 }

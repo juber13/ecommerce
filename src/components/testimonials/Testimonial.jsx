@@ -16,7 +16,7 @@ const Testimonial = () => {
 
 
     const getUsers = async () => {
-        const res = await fetch(url , options);
+        const res = await fetch(url, options);
         const data = await res.json();
         setUsers(data.data.reviews.slice(7, 10));
     }
@@ -33,15 +33,21 @@ const Testimonial = () => {
             </div>
 
             <div className='testimonials flex gap'>
-                {users.map((user, index) => (
+                {users.length > 0 ? users.map((user, index) => (
                     <div className="testimonial flex flex-col" key={index}>
                         <img src={user.review_author_avatar} alt="user-image" />
-                        <p>{user.review_comment.substring(0,200)}</p>
+                        <p>{user.review_comment.substring(0, 200)}</p>
                         {/* <strong>{user.}</strong> */}
                         {/* <small>{user.email}</small> */}
                         <small>Senior Product Developer {index + 1}</small>
                     </div>
-                ))}
+                )) : <div className='testimonials flex gap  '>
+                    <img style={{ width: "60px", height: "60px", borderRadius: "50%" }} src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-image" />
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem amet eos aut modi ullam a. Commodi totam rerum quo assumenda?</p>
+                    {/* <strong>{user.}</strong> */}
+                    {/* <small>{user.email}</small> */}
+                    <small>Senior Product Developer </small>
+                </div>}
             </div>
         </div>
     )

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext, useEffect, useState } from "react";
 import myContext from "./myContext";
 import { setFilteredProducts, setProducts } from "../../redux/cartSlice"; // Import setProducts from the cartSlice

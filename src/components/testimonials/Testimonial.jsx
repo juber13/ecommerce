@@ -41,12 +41,12 @@ const Testimonial = () => {
                         {/* <small>{user.email}</small> */}
                         <small>Senior Product Developer {index + 1}</small>
                     </div>
-                )) : <div className='testimonials flex gap  '>
+                )) : <div className='testimonials flex flex-col item-center'>
                     <img style={{ width: "60px", height: "60px", borderRadius: "50%" }} src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-image" />
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem amet eos aut modi ullam a. Commodi totam rerum quo assumenda?</p>
-                    {/* <strong>{user.}</strong> */}
-                    {/* <small>{user.email}</small> */}
-                    <small>Senior Product Developer </small>
+                    <p style={{width : "50%" ,textAlign : "center"}}>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quidem amet eos aut modi ullam a. Commodi totam rerum quo assumenda?
+                    </p>
+                    <strong>Senior Product Developer </strong>
                 </div>}
             </div>
         </div>

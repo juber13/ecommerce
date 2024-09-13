@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const data = {
-    products : [],
+    products: [],
     cart: [],
-    filteredProducts: []
+    filteredProducts: [],
+    darkMode: false
 };
 
 const cartSlice = createSlice({
@@ -38,9 +39,15 @@ const cartSlice = createSlice({
             if (itemIndex !== -1) {
                 state.cart[itemIndex].quentity = quentity; // Update the quantity property
             }
+        },
+
+        setDarkMode: (state, action) => {
+            state.darkMode = action.payload;
         }
+
+
     }
 });
 
-export const { addToCart, deleteFromCart, setProducts, updateQty, setFilteredProducts, clearCart } = cartSlice.actions;
+export const { addToCart, deleteFromCart, setProducts, updateQty, setFilteredProducts, clearCart, setDarkMode } = cartSlice.actions;
 export default cartSlice.reducer;

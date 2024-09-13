@@ -1,16 +1,23 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { CiMenuBurger } from "react-icons/ci";
 import { IoSunnyOutline, IoCartOutline } from "react-icons/io5";
 import { IoMdCloseCircleOutline } from "react-icons/io";
-import { useSelector } from 'react-redux';
+import { CiCloudMoon } from "react-icons/ci";
+
+import { useSelector , useDispatch } from 'react-redux';
+import { setDarkMode } from '../../redux/cartSlice';
 import './navbar.css'
 
 const Navbar = () => {
-    const data = useSelector(store => store.data);
-
+    const [isDarkMode, setIsDarkMode] = useState(false)
     const [showMenu, setShowMenu] = useState(false)
+    const data = useSelector(store => store.data);
+    const dispatch = useDispatch();
+    console.log(data);
+
     const navigate = useNavigate();
 
     const user = JSON.parse(localStorage.getItem('user'));
@@ -18,6 +25,11 @@ const Navbar = () => {
     const handleLogout = () => {
         localStorage.clear('user');
         navigate('/login');
+    }
+
+    const handleDarkMode = () => {
+        setIsDarkMode(!isDarkMode)
+        dispatch(setDarkMode(isDarkMode))
     }
 
     return (
@@ -52,7 +64,7 @@ const Navbar = () => {
                     </div>
                     <div className='center-items flex gap hide item-center'>
                         <ul className='flex gap'>
-                            <li><a href="#"><IoSunnyOutline className='icon' /></a></li>
+                            <li onClick={handleDarkMode}><a href="#">{isDarkMode ? <CiCloudMoon className='icon' /> : <IoSunnyOutline className='icon' />}</a></li>
                             <li>
                                 <Link to={user?.user?.email ? "/cart" : "/login"}><IoCartOutline className='icon cart' /></Link>
                                 {data.cart.length > 0 && <span className='total-cart'>{data.cart.length}</span>}
@@ -80,7 +92,7 @@ const Navbar = () => {
                                 <a href="#">India</a>
                             </li>
                             <li><a href="#"><img src="https://avatars.githubusercontent.com/u/34296950?v=4" alt="user-png" /></a></li>
-                            <li><a href="#"><IoSunnyOutline className='icon' /></a></li>
+                            <li onClick={handleDarkMode}><a href="#">{isDarkMode ? <CiCloudMoon className='icon' /> : <IoSunnyOutline className='icon' />}</a></li>
                             <li>
                                 <Link to={user?.user?.email ? "/cart" : "/login"}><IoCartOutline className='icon cart' /></Link>
                                 {data.cart.length > 0 && <span className='total-cart'>{data.cart.length}</span>}

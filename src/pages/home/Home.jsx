@@ -9,7 +9,7 @@ import Testimonial from '../../components/testimonials/Testimonial'
 const Home = () => {
     return (
         <Layout>
-            <HeroSection />
+            {/* <HeroSection /> */}
             <Filter />
             <ProductCard />
             <Track />
